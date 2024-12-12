@@ -8,38 +8,69 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            background-color: #f8f8f8;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-        }
-        img {
-            width: 150px; /* تعديل الحجم حسب الحاجة */
-            margin-top: 20px;
         }
         h1 {
-            color: #2c3e50;
-            font-size: 24px;
+            color: #003399;
         }
         p {
-            color: #7f8c8d;
+            color: #666666;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #003399;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0055cc;
+        }
+        img {
+            width: 150px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <img src="ضع هنا رابط الصورة" alt="شعار وازن">
+    <img src="https://raw.githubusercontent.com/Wazin1/Wazin-Legal-Form/main/logo.jpg" alt="شعار وازن">
     <h1>مرحباً بك في Wazin Legal Form</h1>
     <p>بإمكانك إدارة النماذج القانونية بكل سهولة</p>
-    <form>
+    <div class="form-container">
         <h2>استمارة الإدراج</h2>
-        <label for="name">الاسم الكامل</label><br>
-        <input type="text" id="name" placeholder="أدخل اسمك الكامل"><br><br>
-        <label for="email">البريد الإلكتروني</label><br>
-        <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني"><br><br>
-        <label for="phone">رقم الهاتف</label><br>
-        <input type="text" id="phone" placeholder="أدخل رقم هاتفك"><br><br>
-        <label for="details">تفاصيل إضافية</label><br>
-        <textarea id="details" placeholder="أدخل التفاصيل الإضافية"></textarea><br><br>
-        <button type="submit">إرسال</button>
-    </form>
+        <form action="#" method="POST">
+            <label for="fullName">الاسم الكامل</label>
+            <input type="text" id="fullName" name="fullName" placeholder="أدخل اسمك الكامل" required>
+            
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+            
+            <label for="phone">رقم الهاتف</label>
+            <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
+            
+            <label for="details">تفاصيل إضافية</label>
+            <textarea id="details" name="details" placeholder="أدخل التفاصيل الإضافية"></textarea>
+            
+            <button type="submit">إرسال</button>
+        </form>
+    </div>
 </body>
 </html>
