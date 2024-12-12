@@ -1,81 +1,45 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wazin Legal Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f7f7f7;
-      margin: 0;
-      padding: 0;
-    }
-
-    h1 {
-      color: #1a73e8;
-      margin-top: 20px;
-    }
-
-    p {
-      color: #666;
-    }
-
-    form {
-      background-color: #fff;
-      max-width: 500px;
-      margin: 30px auto;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    input[type="text"], input[type="email"], input[type="tel"], textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    textarea {
-      resize: none;
-    }
-
-    button {
-      background-color: #1a73e8;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #155bb5;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wazin Legal Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        img {
+            width: 150px; /* تعديل الحجم حسب الحاجة */
+            margin-top: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 24px;
+        }
+        p {
+            color: #7f8c8d;
+        }
+    </style>
 </head>
 <body>
-  <h1>مرحبًا بك في Wazin Legal Form</h1>
-  <p>يمكنك إدارة النماذج القانونية بكل سهولة</p>
-
-  <form action="#" method="post">
-    <h2>استمارة الإدراج</h2>
-    <label for="name">الاسم الكامل</label>
-    <input type="text" id="name" name="name" placeholder="أدخل اسمك الكامل" required>
-
-    <label for="email">البريد الإلكتروني</label>
-    <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
-
-    <label for="phone">رقم الهاتف</label>
-    <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
-
-    <label for="details">تفاصيل إضافية</label>
-    <textarea id="details" name="details" rows="4" placeholder="أدخل التفاصيل الإضافية"></textarea>
-
-    <button type="submit">إرسال</button>
-  </form>
+    <img src="ضع هنا رابط الصورة" alt="شعار وازن">
+    <h1>مرحباً بك في Wazin Legal Form</h1>
+    <p>بإمكانك إدارة النماذج القانونية بكل سهولة</p>
+    <form>
+        <h2>استمارة الإدراج</h2>
+        <label for="name">الاسم الكامل</label><br>
+        <input type="text" id="name" placeholder="أدخل اسمك الكامل"><br><br>
+        <label for="email">البريد الإلكتروني</label><br>
+        <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني"><br><br>
+        <label for="phone">رقم الهاتف</label><br>
+        <input type="text" id="phone" placeholder="أدخل رقم هاتفك"><br><br>
+        <label for="details">تفاصيل إضافية</label><br>
+        <textarea id="details" placeholder="أدخل التفاصيل الإضافية"></textarea><br><br>
+        <button type="submit">إرسال</button>
+    </form>
 </body>
 </html>
