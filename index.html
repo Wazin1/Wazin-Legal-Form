@@ -1,106 +1,117 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wazin Legal Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo {
-            max-width: 200px;
-            margin: 0 auto 20px;
-        }
-
-        h1 {
-            font-size: 24px;
-            color: #002157;
-        }
-
-        p {
-            font-size: 16px;
-            color: #666666;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            text-align: right;
-            font-weight: bold;
-            margin: 10px 0 5px;
-            color: #333333;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #cccccc;
-            border-radius: 5px;
-            font-size: 14px;
-            font-family: inherit;
-        }
-
-        button {
-            background-color: #002157;
-            color: #ffffff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0046a8;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wazin Legal Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+    }
+    header {
+      margin-bottom: 20px;
+    }
+    header img {
+      max-width: 150px;
+      margin-top: 20px;
+    }
+    h1 {
+      color: #002855;
+      font-size: 24px;
+    }
+    p {
+      color: #666;
+      font-size: 16px;
+    }
+    form {
+      background: #fff;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #333;
+      font-weight: bold;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    button {
+      background-color: #002855;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #004b9a;
+    }
+    footer {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #002855;
+      color: white;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <img src="IMG_4336.jpeg" alt="شعار وازن" class="logo">
-        <h1>مرحباً بك في Wazin Legal Form</h1>
-        <p>بإمكانك إدارة النماذج القانونية بكل سهولة</p>
+  <header>
+    <img src="IMG_4336.jpeg" alt="شعار وازن">
+    <h1>مرحباً بك في Wazin Legal Form</h1>
+    <p>بإمكانك إدارة النماذج القانونية بكل سهولة</p>
+  </header>
 
-        <form action="#" method="POST">
-            <label for="full-name">الاسم الكامل</label>
-            <input type="text" id="full-name" name="full-name" placeholder="أدخل اسمك الكامل" required>
+  <form action="#">
+    <label for="full-name">الاسم الكامل</label>
+    <input type="text" id="full-name" name="full-name" placeholder="أدخل اسمك الكامل" required>
 
-            <label for="email">البريد الإلكتروني</label>
-            <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+    <label for="email">البريد الإلكتروني</label>
+    <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
 
-            <label for="phone">رقم الهاتف</label>
-            <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
+    <label for="phone">رقم الهاتف</label>
+    <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
 
-            <label for="service-type">نوع الخدمة المطلوبة</label>
-            <select id="service-type" name="service-type" required>
-                <option value="" disabled selected>اختر نوع الخدمة</option>
-                <option value="استشارات قانونية">استشارات قانونية</option>
-                <option value="صياغة عقود">صياغة عقود</option>
-                <option value="تمثيل قانوني">تمثيل قانوني</option>
-                <option value="إجراءات تجارية">إجراءات تجارية</option>
-            </select>
+    <label for="service-type">نوع الخدمة المطلوبة</label>
+    <select id="service-type" name="service-type" required>
+      <option value="">اختر نوع الخدمة</option>
+      <option value="استشارات قانونية">استشارات قانونية</option>
+      <option value="صياغة عقود">صياغة عقود</option>
+      <option value="إجراءات تجارية">إجراءات تجارية</option>
+      <option value="تمثيل قانوني">تمثيل قانوني</option>
+    </select>
 
-            <label for="details">تفاصيل إضافية</label>
-            <textarea id="details" name="details" placeholder="أدخل التفاصيل الإضافية" rows="4"></textarea>
+    <label for="details">تفاصيل إضافية</label>
+    <textarea id="details" name="details" rows="4" placeholder="أدخل التفاصيل الإضافية"></textarea>
 
-            <button type="submit">إرسال</button>
-        </form>
-    </div>
+    <button type="submit">إرسال</button>
+  </form>
+
+  <footer>
+    المملكة العربية السعودية: شركة وازن للمحاماة والاستشارات القانونية (مهنية)، شركة سعودية مرخصة ومسجلة بسجل تجاري رقم 4030511179<br>
+    المركز الرئيسي: جدة، برج متبولي بلازا، طريق الأندلس، بجوار دوار السارية<br>
+    الدور الرابع - جناح أعمال (410)<br>
+    الرمز البريدي: 23213<br>
+    البريد الإلكتروني: <a href="mailto:info@wazn.sa">info@wazn.sa</a><br>
+    الموقع الإلكتروني: <a href="https://www.wazn.sa" target="_blank">www.wazn.sa</a>
+  </footer>
 </body>
 </html>
