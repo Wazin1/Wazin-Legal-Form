@@ -13,7 +13,7 @@
             text-align: center;
         }
         header {
-            background-color: white;
+            background-color: #002366; /* كحلي فاتح */
             padding: 20px;
         }
         header img {
@@ -21,13 +21,17 @@
             height: auto;
             display: block;
             margin: 0 auto;
+            background-color: white; /* خلفية الشعار */
+            padding: 10px;
+            border-radius: 5px;
         }
         h1 {
-            color: #002366;
+            color: #D4AF37; /* ذهبي */
+            margin: 10px 0;
         }
         h2 {
             font-size: 16px;
-            color: #555;
+            color: #f5f5f5;
             margin: 10px 0;
             line-height: 1.6;
         }
@@ -86,11 +90,50 @@
         <label for="name">الاسم الكامل</label>
         <input type="text" id="name" name="name" placeholder="أدخل اسمك الكامل">
         
+        <label for="identity-type">نوع الهوية</label>
+        <select id="identity-type" name="identity-type">
+            <option value="">اختر نوع الهوية</option>
+            <option value="هوية وطنية">هوية وطنية</option>
+            <option value="اقامة نظامية">إقامة نظامية</option>
+            <option value="جواز">جواز</option>
+            <option value="اقامة زائر">إقامة زائر</option>
+        </select>
+
+        <label for="civil-id">رقم الهوية</label>
+        <input type="text" id="civil-id" name="civil-id" placeholder="أدخل رقم الهوية">
+
+        <label for="birth-date">تاريخ الميلاد</label>
+        <input type="date" id="birth-date" name="birth-date">
+
         <label for="email">البريد الإلكتروني</label>
         <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني">
         
         <label for="phone">رقم الهاتف</label>
         <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك">
+        
+        <label for="case-type">نوع القضية</label>
+        <select id="case-type" name="case-type">
+            <option value="">اختر نوع القضية</option>
+            <option value="جنائية">جنائية</option>
+            <option value="أسرية">أسرية</option>
+            <option value="تجارية">تجارية</option>
+            <option value="عمالية">عمالية</option>
+        </select>
+        
+        <label for="case-role">صفة القضية</label>
+        <select id="case-role" name="case-role">
+            <option value="">اختر صفتك في القضية</option>
+            <option value="مدعي">مدعي</option>
+            <option value="مدعى عليه">مدعى عليه</option>
+            <option value="شاهد">شاهد</option>
+        </select>
+        
+        <label for="case-status">حالة القضية</label>
+        <select id="case-status" name="case-status">
+            <option value="">اختر حالة القضية</option>
+            <option value="جديدة">جديدة</option>
+            <option value="سبق النظر فيها">سبق النظر فيها</option>
+        </select>
         
         <label for="service">نوع الخدمة المطلوبة</label>
         <select id="service" name="service">
@@ -103,14 +146,6 @@
         
         <label for="date">تاريخ التقديم</label>
         <input type="date" id="date" name="date">
-        
-        <label for="priority">درجة الأهمية</label>
-        <select id="priority" name="priority">
-            <option value="">اختر درجة الأهمية</option>
-            <option value="عاجل جداً">عاجل جداً</option>
-            <option value="عاجل">عاجل</option>
-            <option value="غير مستعجل">غير مستعجل</option>
-        </select>
         
         <label for="details">تفاصيل إضافية</label>
         <textarea id="details" name="details" rows="4" placeholder="أدخل التفاصيل الإضافية"></textarea>
