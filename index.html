@@ -15,7 +15,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 20px auto;
             background: #fff;
             padding: 20px;
@@ -23,13 +23,14 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        h1, h2 {
-            color: #333;
-        }
-
         h1 {
             text-align: center;
             color: #0056b3;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #333;
         }
 
         .form-group {
@@ -67,65 +68,117 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 20px;
         }
 
         button:hover {
             background-color: #004494;
+        }
+
+        .contract {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .highlight {
+            color: #0056b3;
+            font-weight: bold;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .no-print {
+                display: none;
+            }
+            .contract {
+                border: none;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>عقد أتعاب - منصة وازن</h1>
-        <form>
-            <h2>بيانات الطرف الثاني</h2>
-            <div class="flex">
-                <div class="form-group">
-                    <label for="client-name">اسم العميل</label>
-                    <input type="text" id="client-name" name="client-name" required>
+        <div class="form">
+            <h2>بيانات العميل</h2>
+            <form>
+                <div class="flex">
+                    <div class="form-group">
+                        <label for="client-name">اسم العميل</label>
+                        <input type="text" id="client-name" name="client-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="identity-type">نوع الهوية</label>
+                        <select id="identity-type" name="identity-type" required>
+                            <option value="">اختر نوع الهوية</option>
+                            <option value="هوية وطنية">هوية وطنية</option>
+                            <option value="إقامة نظامية">إقامة نظامية</option>
+                            <option value="جواز سفر">جواز سفر</option>
+                            <option value="إقامة زائر">إقامة زائر</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="identity-number">رقم الهوية</label>
+                        <input type="text" id="identity-number" name="identity-number" required>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="identity-type">نوع الهوية</label>
-                    <select id="identity-type" name="identity-type" required>
-                        <option value="">اختر نوع الهوية</option>
-                        <option value="هوية وطنية">هوية وطنية</option>
-                        <option value="إقامة نظامية">إقامة نظامية</option>
-                        <option value="جواز سفر">جواز سفر</option>
-                        <option value="إقامة زائر">إقامة زائر</option>
+                    <label for="case-type">نوع القضية</label>
+                    <select id="case-type" name="case-type" required>
+                        <option value="">اختر نوع القضية</option>
+                        <option value="مدنية">مدنية</option>
+                        <option value="جنائية">جنائية</option>
+                        <option value="عائلية">عائلية</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="identity-number">رقم الهوية</label>
-                    <input type="text" id="identity-number" name="identity-number" required>
+                    <label for="case-details">تفاصيل القضية</label>
+                    <textarea id="case-details" name="case-details" rows="4" required></textarea>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="case-type">نوع القضية</label>
-                <select id="case-type" name="case-type" required>
-                    <option value="">اختر نوع القضية</option>
-                    <option value="مدنية">مدنية</option>
-                    <option value="جنائية">جنائية</option>
-                    <option value="عائلية">عائلية</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="case-description">تفاصيل القضية</label>
-                <textarea id="case-description" name="case-description" rows="4"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="fees">قيمة الأتعاب (بالريال السعودي)</label>
-                <input type="number" id="fees" name="fees" required>
-            </div>
-            <div class="form-group">
-                <label for="contract-date">تاريخ العقد</label>
-                <input type="date" id="contract-date" name="contract-date" required>
-            </div>
-            <div class="form-group">
-                <label for="notes">ملاحظات إضافية</label>
-                <textarea id="notes" name="notes" rows="4"></textarea>
-            </div>
-            <button type="submit">حفظ العقد</button>
-        </form>
+                <div class="form-group">
+                    <label for="fees">قيمة الأتعاب (ريال)</label>
+                    <input type="number" id="fees" name="fees" required>
+                </div>
+                <div class="form-group">
+                    <label for="contract-date">تاريخ العقد</label>
+                    <input type="date" id="contract-date" name="contract-date" required>
+                </div>
+                <button type="button" onclick="generateContract()">إعداد العقد</button>
+            </form>
+        </div>
+        <div class="contract" id="contract">
+            <h2>نص العقد</h2>
+            <p>
+                تم إبرام هذا العقد بتاريخ <span class="highlight" id="contract-date-display">_____</span> بين شركة وازن للمحاماة
+                والاستشارات القانونية (الطرف الأول) والعميل <span class="highlight" id="client-name-display">_____</span> 
+                (الطرف الثاني) والمقيم ببطاقة هوية رقم <span class="highlight" id="identity-number-display">_____</span>.
+            </p>
+            <p>
+                يوافق الطرف الثاني على دفع مبلغ <span class="highlight" id="fees-display">_____</span> ريال سعودي كأتعاب
+                متعلقة بالقضية <span class="highlight" id="case-type-display">_____</span>.
+            </p>
+            <p>
+                يلتزم الطرف الثاني بتقديم جميع الوثائق والمستندات اللازمة لدعم القضية وتسهيل سيرها.
+            </p>
+            <p>
+                هذا العقد محمي بموجب قوانين المملكة العربية السعودية، وأي نزاع ينشأ عنه يتم تسويته في المحاكم المختصة.
+            </p>
+        </div>
+        <button class="no-print" onclick="window.print()">طباعة العقد</button>
     </div>
+    <script>
+        function generateContract() {
+            document.getElementById("contract-date-display").textContent = document.getElementById("contract-date").value;
+            document.getElementById("client-name-display").textContent = document.getElementById("client-name").value;
+            document.getElementById("identity-number-display").textContent = document.getElementById("identity-number").value;
+            document.getElementById("fees-display").textContent = document.getElementById("fees").value;
+            document.getElementById("case-type-display").textContent = document.getElementById("case-type").value;
+        }
+    </script>
 </body>
 </html>
