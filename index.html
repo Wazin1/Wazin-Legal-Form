@@ -8,177 +8,113 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            padding: 20px;
             direction: rtl;
             text-align: right;
+            background-color: #f4f4f4;
         }
 
         .container {
-            max-width: 900px;
-            margin: 20px auto;
+            max-width: 800px;
+            margin: auto;
             background: #fff;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
+        h1, h2 {
             text-align: center;
             color: #0056b3;
         }
 
-        h2 {
-            margin-top: 20px;
+        h3 {
             color: #333;
+            margin-top: 20px;
         }
 
-        .form-group {
-            margin-bottom: 15px;
+        p {
+            margin: 10px 0;
+            line-height: 1.8;
+            font-size: 16px;
         }
 
-        label {
+        .section-title {
             font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
+            text-decoration: underline;
+            margin-top: 20px;
         }
 
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .flex {
-            display: flex;
-            gap: 15px;
-        }
-
-        .flex .form-group {
-            flex: 1;
-        }
-
-        button {
+        .no-print {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
             background-color: #0056b3;
             color: white;
             border: none;
-            padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
+            text-align: center;
         }
 
-        button:hover {
+        .no-print:hover {
             background-color: #004494;
         }
 
-        .contract {
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #fff;
-        }
-
-        .highlight {
-            color: #0056b3;
-            font-weight: bold;
-        }
-
         @media print {
-            body {
-                background: white;
-            }
             .no-print {
                 display: none;
-            }
-            .contract {
-                border: none;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>عقد أتعاب - منصة وازن</h1>
-        <div class="form">
-            <h2>بيانات العميل</h2>
-            <form>
-                <div class="flex">
-                    <div class="form-group">
-                        <label for="client-name">اسم العميل</label>
-                        <input type="text" id="client-name" name="client-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="identity-type">نوع الهوية</label>
-                        <select id="identity-type" name="identity-type" required>
-                            <option value="">اختر نوع الهوية</option>
-                            <option value="هوية وطنية">هوية وطنية</option>
-                            <option value="إقامة نظامية">إقامة نظامية</option>
-                            <option value="جواز سفر">جواز سفر</option>
-                            <option value="إقامة زائر">إقامة زائر</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="identity-number">رقم الهوية</label>
-                        <input type="text" id="identity-number" name="identity-number" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="case-type">نوع القضية</label>
-                    <select id="case-type" name="case-type" required>
-                        <option value="">اختر نوع القضية</option>
-                        <option value="مدنية">مدنية</option>
-                        <option value="جنائية">جنائية</option>
-                        <option value="عائلية">عائلية</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="case-details">تفاصيل القضية</label>
-                    <textarea id="case-details" name="case-details" rows="4" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="fees">قيمة الأتعاب (ريال)</label>
-                    <input type="number" id="fees" name="fees" required>
-                </div>
-                <div class="form-group">
-                    <label for="contract-date">تاريخ العقد</label>
-                    <input type="date" id="contract-date" name="contract-date" required>
-                </div>
-                <button type="button" onclick="generateContract()">إعداد العقد</button>
-            </form>
-        </div>
-        <div class="contract" id="contract">
-            <h2>نص العقد</h2>
+        <h1>عقد أتعاب</h1>
+        <h2>شركة وازن للمحاماة والاستشارات القانونية</h2>
+
+        <div class="content">
+            <h3 class="section-title">المادة الأولى: الأطراف</h3>
             <p>
-                تم إبرام هذا العقد بتاريخ <span class="highlight" id="contract-date-display">_____</span> بين شركة وازن للمحاماة
-                والاستشارات القانونية (الطرف الأول) والعميل <span class="highlight" id="client-name-display">_____</span> 
-                (الطرف الثاني) والمقيم ببطاقة هوية رقم <span class="highlight" id="identity-number-display">_____</span>.
+                تم إبرام هذا العقد بين شركة وازن للمحاماة والاستشارات القانونية، ويمثلها السيد/ ________ (الطرف الأول)،
+                والعميل السيد/ ________ (الطرف الثاني).
             </p>
+
+            <h3 class="section-title">المادة الثانية: موضوع العقد</h3>
             <p>
-                يوافق الطرف الثاني على دفع مبلغ <span class="highlight" id="fees-display">_____</span> ريال سعودي كأتعاب
-                متعلقة بالقضية <span class="highlight" id="case-type-display">_____</span>.
+                يلتزم الطرف الأول بتقديم الخدمات القانونية للطرف الثاني، بما في ذلك تقديم الاستشارات القانونية،
+                تمثيله أمام المحاكم، وإعداد المستندات القانونية اللازمة.
             </p>
+
+            <h3 class="section-title">المادة الثالثة: الأتعاب</h3>
             <p>
-                يلتزم الطرف الثاني بتقديم جميع الوثائق والمستندات اللازمة لدعم القضية وتسهيل سيرها.
+                يلتزم الطرف الثاني بدفع مبلغ وقدره ________ ريال سعودي، كأتعاب عن الخدمات القانونية المقدمة من الطرف الأول.
             </p>
+
+            <h3 class="section-title">المادة الرابعة: الالتزامات</h3>
             <p>
-                هذا العقد محمي بموجب قوانين المملكة العربية السعودية، وأي نزاع ينشأ عنه يتم تسويته في المحاكم المختصة.
+                يلتزم الطرف الأول بتقديم الخدمات القانونية بدقة واحترافية. كما يلتزم الطرف الثاني بتوفير جميع
+                المستندات اللازمة والتعاون الكامل مع الطرف الأول.
+            </p>
+
+            <h3 class="section-title">المادة الخامسة: مدة العقد</h3>
+            <p>
+                يبدأ هذا العقد من تاريخ التوقيع عليه ويستمر لمدة ________ شهر/سنة. يتم التجديد بناءً على اتفاق الطرفين.
+            </p>
+
+            <h3 class="section-title">المادة السادسة: إنهاء العقد</h3>
+            <p>
+                يحق لأي من الطرفين إنهاء العقد بإشعار كتابي مسبق للطرف الآخر بمدة لا تقل عن ________ يوم.
+            </p>
+
+            <h3 class="section-title">المادة السابعة: أحكام عامة</h3>
+            <p>
+                يخضع هذا العقد لقوانين المملكة العربية السعودية. وأي نزاع ينشأ عن هذا العقد يتم حله وديًا،
+                وفي حالة عدم التوصل إلى حل، يتم رفع النزاع إلى المحاكم المختصة.
             </p>
         </div>
+
         <button class="no-print" onclick="window.print()">طباعة العقد</button>
     </div>
-    <script>
-        function generateContract() {
-            document.getElementById("contract-date-display").textContent = document.getElementById("contract-date").value;
-            document.getElementById("client-name-display").textContent = document.getElementById("client-name").value;
-            document.getElementById("identity-number-display").textContent = document.getElementById("identity-number").value;
-            document.getElementById("fees-display").textContent = document.getElementById("fees").value;
-            document.getElementById("case-type-display").textContent = document.getElementById("case-type").value;
-        }
-    </script>
 </body>
 </html>
