@@ -3,152 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عقد أتعاب - منصة وازن</title>
+    <title>عقد محاماة - منصة وازن</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Amiri', serif;
             margin: 0;
-            padding: 20px;
-            direction: rtl;
-            text-align: right;
-            background-color: #f4f4f4;
+            padding: 0;
+            background-color: #f9f9f9;
+            line-height: 1.6;
+            color: #333;
         }
-
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
         .container {
+            margin: 20px auto;
+            width: 90%;
             max-width: 800px;
-            margin: auto;
             background: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
-
-        h1, h2 {
+        .contract-header {
             text-align: center;
-            color: #0056b3;
+            margin-bottom: 20px;
         }
-
-        h3 {
-            color: #333;
-            margin-top: 20px;
+        .contract-header h1 {
+            font-size: 24px;
+            color: #444;
         }
-
-        p {
-            margin: 10px 0;
-            line-height: 1.8;
-            font-size: 16px;
+        .contract-header h2 {
+            font-size: 18px;
+            color: #666;
         }
-
-        .section-title {
-            font-weight: bold;
-            text-decoration: underline;
-            margin-top: 20px;
-        }
-
-        .no-print {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #0056b3;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .no-print:hover {
-            background-color: #004494;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
+        .section {
+            margin: 20px 0;
             border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            background: #f7f7f7;
         }
-
-        th, td {
+        .section-title {
+            background-color: #2a3b5c;
+            color: #fff;
             padding: 10px;
-            text-align: right;
+            font-size: 18px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
-
-        th {
-            background-color: #f8f8f8;
+        .field {
+            margin-bottom: 15px;
         }
-
-        @media print {
-            .no-print {
-                display: none;
-            }
+        .field label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #444;
+        }
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fff;
+            box-sizing: border-box;
+        }
+        .print-button {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>عقد محاماة - منصة وازن</h1>
+    </header>
     <div class="container">
-        <h1>عقد أتعاب</h1>
-        <h2>شركة وازن للمحاماة والاستشارات القانونية</h2>
+        <div class="contract-header">
+            <h1>عقد محاماة</h1>
+            <h2>الأربعاء، 13 ربيع ثاني 1445 الموافق 16/أكتوبر/2024</h2>
+        </div>
 
-        <!-- الكليشة الثابتة -->
-        <table>
-            <tr>
-                <th>الطرف الأول</th>
-                <td>
-                    وازن للمحاماة والاستشارات القانونية<br>
-                    بموجب سجل منشأة قانونية رقم (SBA056)، هاتف رقم (0123456789)،<br>
-                    يمثلها المحامي عبد الرحمن بن مشبب الغامدي، سجل مدني رقم (10551184)،<br>
-                    وعنوانه: جدة - حي الرويس - طريق الأندلس.<br>
-                    البريد الإلكتروني: <a href="mailto:info@wazn.sa">info@wazn.sa</a>
-                </td>
-            </tr>
-            <tr>
-                <th>الطرف الثاني</th>
-                <td>
-                    <label for="client_name">اسم العميل:</label>
-                    <input type="text" id="client_name" placeholder="أدخل اسم العميل" style="width: 100%;">
-                    <br>
-                    <label for="client_address">العنوان:</label>
-                    <input type="text" id="client_address" placeholder="أدخل عنوان العميل" style="width: 100%;">
-                </td>
-            </tr>
-        </table>
+        <div class="section">
+            <div class="section-title">أطراف العقد</div>
+            <p><strong>الطرف الأول:</strong> وازن للمحاماة والاستشارات القانونية...</p>
+            <p><strong>الطرف الثاني:</strong> محمد أحمد صالح الحامد...</p>
+        </div>
 
-        <!-- التمهيد -->
-        <h3>تمهيد</h3>
-        <p>
-            نظرًا لما أفاد به الطرف الثاني وما ورد في لائحة المدعى العام المؤرخة بتاريخ ________،
-            والتي تضمنت تفاصيل الحالة الأمنية المتعلقة بـ ________. وبناءً على رغبة الطرف الثاني
-            في توكيل الطرف الأول لتمثيله في هذه القضية.
-        </p>
+        <div class="section">
+            <div class="section-title">تمهيد</div>
+            <p>نظراً لما أفاد به الطرف الثاني...</p>
+        </div>
 
-        <!-- المواد -->
-        <h3 class="section-title">مواد العقد</h3>
-        <p>
-            <strong>المادة الأولى: الأطراف</strong><br>
-            تم إبرام هذا العقد بين شركة وازن للمحاماة والاستشارات القانونية، ويمثلها السيد/ عبد الرحمن بن مشبب الغامدي (الطرف الأول)،
-            والعميل السيد/ ________ (الطرف الثاني).
-        </p>
+        <!-- مواد العقد تبدأ هنا -->
+        <div class="section">
+            <div class="section-title">المادة الأولى: موضوع العقد</div>
+            <p>يتعهد الطرف الأول...</p>
+        </div>
+        <div class="section">
+            <div class="section-title">المادة الثانية: الأتعاب</div>
+            <p>يتفق الطرفان...</p>
+        </div>
+        <!-- باقي المواد إلى المادة السابعة -->
+        <!-- يمكن إضافة المواد كاملة هنا -->
 
-        <p>
-            <strong>المادة الثانية: موضوع العقد</strong><br>
-            يلتزم الطرف الأول بتقديم الخدمات القانونية للطرف الثاني.
-        </p>
-
-        <p>
-            <strong>المادة الثالثة: الأتعاب</strong><br>
-            يلتزم الطرف الثاني بدفع مبلغ ________ ريال سعودي.
-        </p>
-
-        <p>
-            <strong>المادة الرابعة: الالتزامات</strong><br>
-            يلتزم الطرف الأول بتقديم الخدمات القانونية باحترافية.
-        </p>
-
-        <!-- زر الطباعة -->
-        <button class="no-print" onclick="window.print()">طباعة العقد</button>
+        <!-- خيار الطباعة -->
+        <div class="field">
+            <button class="print-button" onclick="window.print()">طباعة العقد</button>
+        </div>
     </div>
 </body>
 </html>
