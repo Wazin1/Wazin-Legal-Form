@@ -1,126 +1,53 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عقد محاماة - منصة وازن</title>
-    <style>
-        body {
-            font-family: 'Sakkal Majalla', Arial, sans-serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-        .container {
-            width: 90%;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .header img {
-            max-width: 150px;
-        }
-        .header h1 {
-            margin: 10px 0;
-            color: #002147;
-            font-size: 28px;
-        }
-        .header h2 {
-            margin: 5px 0;
-            color: #d4af37;
-            font-size: 24px;
-        }
-        .section-title {
-            background-color: #002147;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 20px;
-            font-size: 20px;
-        }
-        .content {
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #f1f1f1;
-            border-radius: 5px;
-        }
-        .content p {
-            margin: 0;
-            text-align: justify;
-        }
-        .footer {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 14px;
-            color: #555;
-        }
-        .footer a {
-            color: #002147;
-            text-decoration: none;
-        }
-        .btn {
-            display: block;
-            width: 200px;
-            margin: 20px auto;
-            padding: 10px;
-            text-align: center;
-            background-color: #002147;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-        }
-        .btn:hover {
-            background-color: #d4af37;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حاسبة أتعاب القضايا</title>
+  <style>
+    body { font-family: Arial, sans-serif; direction: rtl; text-align: center; }
+    input, select { margin: 10px; padding: 5px; }
+    button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="logo.png" alt="شعار وازن">
-            <h1>مرحباً بكم</h1>
-            <h2>في منصة وازن</h2>
-            <p>بإمكانك إدارة النماذج القانونية بكل سهولة مع شركة وازن للمحاماة والاستشارات القانونية</p>
-        </div>
+  <h1>حاسبة أتعاب القضايا</h1>
+  <form id="feesCalculator">
+    <label>نوع القضية:</label>
+    <select id="caseType">
+      <option value="simple">بسيطة</option>
+      <option value="medium">متوسطة</option>
+      <option value="complex">معقدة</option>
+    </select><br>
+    <label>قيمة المطالبة (ريال):</label>
+    <input type="number" id="claimValue"><br>
+    <label>عدد الجلسات المتوقعة:</label>
+    <input type="number" id="sessions"><br>
+    <label>هل القضية مستعجلة؟</label>
+    <select id="urgent">
+      <option value="yes">نعم</option>
+      <option value="no">لا</option>
+    </select><br>
+    <button type="button" onclick="calculateFees()">احسب الأتعاب</button>
+  </form>
+  <h2 id="result"></h2>
+  <script>
+    function calculateFees() {
+      const caseType = document.getElementById("caseType").value;
+      const claimValue = Number(document.getElementById("claimValue").value);
+      const sessions = Number(document.getElementById("sessions").value);
+      const urgent = document.getElementById("urgent").value;
 
-        <div class="section-title">أطراف العقد</div>
-        <div class="content">
-            <p>الطرف الأول: وازن للمحاماة والاستشارات القانونية، سعودية بموجب سجل منشأة قانونية رقم (SBA586)، عنوانها: جدة - حي الرويس - رمز بريدي 23213، هاتف رقم (0122234566)، ويمثلها في التوقيع على هذا العقد المحامي عبد الرحمن عبد العزيز المرزوقي، سعودي الجنسية بموجب السجل المدني رقم (1084519184)، بصفته محامياً معتمداً من وزارة العدل، وعنوانه مدينة جدة.</p>
-            <p>الطرف الثاني: محمد أحمد صالح الحامد، بموجب الإقامة النظامية رقم (2018120120234)، وعنوانه: مدينة الخبر - حي الثقبة - الرمز البريدي (31952)، جوال رقم (0557894123).</p>
-        </div>
+      let baseFees = 3000; // الخبرة + المذكرات + الاستشارة + الاجتماع الأول
+      let complexityFee = caseType === "medium" ? 2000 : caseType === "complex" ? 5000 : 1000;
+      let claimPercentage = claimValue <= 15000 ? 0.3 : claimValue <= 100000 ? 0.15 : 0.1;
+      let sessionFees = (sessions > 5 ? (sessions - 5) * 1000 : 0);
+      let urgentFee = urgent === "yes" ? 0.2 * (baseFees + complexityFee + sessionFees + claimValue * claimPercentage) : 0;
 
-        <div class="section-title">تمهيد</div>
-        <div class="content">
-            <p>نظرًا لما أفاد به الطرف الثاني وما ورد في لائحة المدعى العام المؤرخة بتاريخ 13/03/1442هـ... (النصوص الكاملة للمقدمة)</p>
-        </div>
+      let totalFees = baseFees + complexityFee + (claimValue * claimPercentage) + sessionFees + urgentFee;
 
-        <div class="section-title">المادة الأولى: موضوع العقد</div>
-        <div class="content">
-            <p>يتعهد الطرف الأول... (النصوص الكاملة للمواد)</p>
-        </div>
-
-        <div class="section-title">المادة الثانية: الأتعاب</div>
-        <div class="content">
-            <p>اتفق الطرفان... (النصوص الكاملة للمواد)</p>
-        </div>
-
-        <button class="btn" onclick="window.print()">طباعة العقد</button>
-
-        <div class="footer">
-            <p>المملكة العربية السعودية: شركة وازن للمحاماة والاستشارات القانونية (مهنية)، شركة سعودية مرخصة ومسجلة بسجل تجاري رقم 4030511179</p>
-            <p>المركز الرئيسي: جدة، طريق الأندلس، بجوار دوار السارية، برج متبولي بلازا، الدور الرابع - جناح أعمال (410)</p>
-            <p>البريد الإلكتروني: <a href="mailto:info@wazn.sa">info@wazn.sa</a> | الموقع الإلكتروني: <a href="https://www.wazn.sa">www.wazn.sa</a></p>
-        </div>
-    </div>
+      document.getElementById("result").innerText = `إجمالي الأتعاب: ${totalFees.toFixed(2)} ريال`;
+    }
+  </script>
 </body>
 </html>
