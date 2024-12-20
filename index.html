@@ -14,12 +14,12 @@
       background-color: #f4f4f4;
     }
     header {
-      background-color: #4CAF50;
+      background-color: #3E4A61; /* كحلي فاتح */
       color: white;
       padding: 20px 10px;
     }
     header img {
-      height: 50px;
+      height: 80px;
     }
     header h1 {
       margin: 10px 0;
@@ -36,26 +36,36 @@
     }
     button {
       padding: 10px 20px;
-      background-color: #4CAF50;
+      background-color: #3E4A61; /* كحلي فاتح */
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
     }
     button:hover {
-      background-color: #45a049;
+      background-color: #2D3649; /* كحلي أغمق */
     }
     footer {
       margin-top: 20px;
       padding: 10px;
-      background-color: #4CAF50;
+      background-color: #3E4A61; /* كحلي فاتح */
       color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer img {
+      height: 50px;
+      margin-left: 10px;
+    }
+    footer p {
+      margin: 0;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://via.placeholder.com/150?text=Wazen+Logo" alt="شعار وازن">
+    <img src="https://imgur.com/ojU1j70.png" alt="شعار وازن"> <!-- شعار أعلى الصفحة -->
     <h1>حاسبة أتعاب القضايا</h1>
     <p>مرحباً بك في منصة وازن للمحاماة والاستشارات القانونية</p>
   </header>
@@ -85,7 +95,8 @@
     <h2 id="result" style="margin-top: 20px;"></h2>
   </section>
   <footer>
-    <p>© 2024 منصة وازن للمحاماة والاستشارات القانونية - جميع الحقوق محفوظة</p>
+    <p>© 2024 جميع الحقوق محفوظة لمنصة وازن</p>
+    <img src="https://imgur.com/fYkxuxQ.png" alt="شعار وازن"> <!-- شعار أسفل الصفحة -->
   </footer>
   <script>
     function calculateFees() {
