@@ -6,8 +6,9 @@
   <title>حاسبة أتعاب القضايا</title>
   <style>
     body { font-family: Arial, sans-serif; direction: rtl; text-align: center; }
-    input, select { margin: 10px; padding: 5px; }
-    button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; }
+    input, select { margin: 10px; padding: 5px; width: 50%; }
+    button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #45a049; }
   </style>
 </head>
 <body>
@@ -15,37 +16,67 @@
   <form id="feesCalculator">
     <label>نوع القضية:</label>
     <select id="caseType">
-      <option value="simple">بسيطة</option>
-      <option value="medium">متوسطة</option>
-      <option value="complex">معقدة</option>
+      <option value="commercial">قضية تجارية</option>
+      <option value="criminal">قضية جنائية</option>
+      <option value="civil">قضية مدنية</option>
+      <option value="personal">قضية أحوال شخصية</option>
+      <option value="labor">قضية عمالية</option>
+      <option value="administrative">قضية إدارية</option>
     </select><br>
     <label>قيمة المطالبة (ريال):</label>
     <input type="number" id="claimValue"><br>
-    <label>عدد الجلسات المتوقعة:</label>
-    <input type="number" id="sessions"><br>
-    <label>هل القضية مستعجلة؟</label>
-    <select id="urgent">
-      <option value="yes">نعم</option>
-      <option value="no">لا</option>
+    <label>درجة التعقيد:</label>
+    <select id="complexity">
+      <option value="easy">سهلة</option>
+      <option value="medium">متوسطة</option>
+      <option value="complex">معقدة</option>
     </select><br>
+    <label>عدد الجلسات الإضافية:</label>
+    <input type="number" id="extraSessions"><br>
     <button type="button" onclick="calculateFees()">احسب الأتعاب</button>
   </form>
   <h2 id="result"></h2>
   <script>
     function calculateFees() {
+      // جمع المدخلات
       const caseType = document.getElementById("caseType").value;
       const claimValue = Number(document.getElementById("claimValue").value);
-      const sessions = Number(document.getElementById("sessions").value);
-      const urgent = document.getElementById("urgent").value;
+      const complexity = document.getElementById("complexity").value;
+      const extraSessions = Number(document.getElementById("extraSessions").value);
 
-      let baseFees = 3000; // الخبرة + المذكرات + الاستشارة + الاجتماع الأول
-      let complexityFee = caseType === "medium" ? 2000 : caseType === "complex" ? 5000 : 1000;
-      let claimPercentage = claimValue <= 15000 ? 0.3 : claimValue <= 100000 ? 0.15 : 0.1;
-      let sessionFees = (sessions > 5 ? (sessions - 5) * 1000 : 0);
-      let urgentFee = urgent === "yes" ? 0.2 * (baseFees + complexityFee + sessionFees + claimValue * claimPercentage) : 0;
+      // القيم الثابتة حسب المطالبة
+      let baseFee;
+      if (claimValue <= 50000) baseFee = 3000;
+      else if (claimValue <= 100000) baseFee = 5000;
+      else if (claimValue <= 500000) baseFee = 10000;
+      else if (claimValue > 500000) {
+        baseFee = 20000 + Math.ceil((claimValue - 1000000) / 100000) * 7000;
+      }
 
-      let totalFees = baseFees + complexityFee + (claimValue * claimPercentage) + sessionFees + urgentFee;
+      // النسبة حسب نوع القضية
+      let percentage;
+      if (caseType === "commercial") percentage = 0.15;
+      else if (caseType === "criminal") percentage = 0.10;
+      else if (caseType === "civil") percentage = 0.20;
+      else if (caseType === "personal") percentage = 0.10;
+      else if (caseType === "labor") percentage = 0.15;
+      else if (caseType === "administrative") percentage = 0.10;
 
+      const claimPercentage = claimValue * percentage;
+
+      // الإضافات حسب درجة التعقيد
+      let complexityFee;
+      if (complexity === "easy") complexityFee = 0;
+      else if (complexity === "medium") complexityFee = 0.05 * claimValue;
+      else if (complexity === "complex") complexityFee = 0.10 * claimValue;
+
+      // الجلسات الإضافية
+      const sessionFee = extraSessions > 0 ? extraSessions * 1000 : 0;
+
+      // الحساب النهائي
+      const totalFees = baseFee + claimPercentage + complexityFee + sessionFee;
+
+      // عرض النتيجة
       document.getElementById("result").innerText = `إجمالي الأتعاب: ${totalFees.toFixed(2)} ريال`;
     }
   </script>
