@@ -1,146 +1,130 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>حاسبة أتعاب القضايا - منصة وازن</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      direction: rtl;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-    header {
-      background-color: #3E4A61; /* كحلي فاتح */
-      color: white;
-      padding: 20px 10px;
-    }
-    header img {
-      height: 120px; /* تكبير الشعار */
-    }
-    header h1 {
-      margin: 10px 0;
-    }
-    section {
-      padding: 20px;
-    }
-    input, select {
-      margin: 10px;
-      padding: 10px;
-      width: 50%;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #3E4A61; /* كحلي فاتح */
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #2D3649; /* كحلي أغمق */
-    }
-    footer {
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #3E4A61; /* كحلي فاتح */
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    footer img {
-      height: 80px; /* تكبير الشعار */
-      margin-left: 10px;
-    }
-    footer p {
-      margin: 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقرير تقدير أتعاب المحاماة</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+        body {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            margin: 40px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #3E4A61;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            font-size: 16px;
+        }
+        th {
+            background-color: #3E4A61;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 200px;
+        }
+        .content {
+            text-align: justify;
+            margin: 20px 40px;
+            line-height: 2;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <img src="https://i.imgur.com/ojU1j70.png" alt="شعار وازن"> <!-- شعار أعلى الصفحة -->
-    <h1>حاسبة أتعاب القضايا</h1>
-    <p>مرحباً بك في منصة وازن للمحاماة والاستشارات القانونية</p>
-  </header>
-  <section>
-    <form id="feesCalculator">
-      <label>نوع القضية:</label>
-      <select id="caseType">
-        <option value="commercial">قضية تجارية</option>
-        <option value="criminal">قضية جنائية</option>
-        <option value="civil">قضية مدنية</option>
-        <option value="personal">قضية أحوال شخصية</option>
-        <option value="labor">قضية عمالية</option>
-        <option value="administrative">قضية إدارية</option>
-      </select><br>
-      <label>قيمة المطالبة (ريال):</label>
-      <input type="number" id="claimValue" placeholder="أدخل قيمة المطالبة"><br>
-      <label>درجة التعقيد:</label>
-      <select id="complexity">
-        <option value="easy">سهلة</option>
-        <option value="medium">متوسطة</option>
-        <option value="complex">معقدة</option>
-      </select><br>
-      <label>عدد الجلسات الإضافية:</label>
-      <input type="number" id="extraSessions" placeholder="أدخل عدد الجلسات"><br>
-      <button type="button" onclick="calculateFees()">احسب الأتعاب</button>
-    </form>
-    <h2 id="result" style="margin-top: 20px;"></h2>
-  </section>
-  <footer>
-    <p>© 2024 جميع الحقوق محفوظة لمنصة وازن</p>
-    <img src="https://i.imgur.com/fYkxuxQ.png" alt="شعار وازن"> <!-- شعار أسفل الصفحة -->
-  </footer>
-  <script>
-    function calculateFees() {
-      // جمع المدخلات
-      const caseType = document.getElementById("caseType").value;
-      const claimValue = Number(document.getElementById("claimValue").value);
-      const complexity = document.getElementById("complexity").value;
-      const extraSessions = Number(document.getElementById("extraSessions").value);
+    <!-- شعار وازن -->
+    <img src="https://l.top4top.io/p_3279xwwmt0.png" alt="شعار وازن">
+    <h1>تقرير لجنة تقدير تكاليف أتعاب المحاماة</h1>
 
-      // القيم الثابتة حسب المطالبة
-      let baseFee;
-      if (claimValue <= 50000) baseFee = 3000;
-      else if (claimValue <= 100000) baseFee = 5000;
-      else if (claimValue <= 500000) baseFee = 10000;
-      else if (claimValue > 500000) {
-        baseFee = 20000 + Math.ceil((claimValue - 1000000) / 100000) * 7000;
-      }
+    <!-- النص الرسمي -->
+    <div class="content">
+        <p>
+            بناءً على الصلاحيات المخولة للجنة تقدير تكاليف أتعاب المحاماة في شركة وازن للمحاماة والاستشارات القانونية، 
+            وانطلاقاً من حرص الشركة على تحقيق العدالة والشفافية، 
+            فقد اجتمعت اللجنة بتاريخ 23 ديسمبر 2024 عن بعد، 
+            وبعد الاطلاع على مستندات العميل المرفقة في النظام الداخلي، 
+            قررت اللجنة تقدير الأتعاب وفق الخيارات الثلاثة التالية:
+        </p>
+    </div>
 
-      // النسبة حسب نوع القضية
-      let percentage;
-      if (caseType === "commercial") percentage = 0.15;
-      else if (caseType === "criminal") percentage = 0.10;
-      else if (caseType === "civil") percentage = 0.20;
-      else if (caseType === "personal") percentage = 0.10;
-      else if (caseType === "labor") percentage = 0.15;
-      else if (caseType === "administrative") percentage = 0.10;
+    <!-- جدول الأتعاب -->
+    <table>
+        <thead>
+            <tr>
+                <th>التقدير</th>
+                <th>قبل الخصم</th>
+                <th>بعد الخصم</th>
+                <th>الدفعة الأولى</th>
+                <th>الدفعة الثانية</th>
+                <th>الدفعة الأخيرة</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Premium</td>
+                <td>177,000.00 ريال</td>
+                <td>155,760.00 ريال</td>
+                <td>35,000.00 ريال</td>
+                <td>25,000.00 ريال</td>
+                <td>95,760.00 ريال</td>
+            </tr>
+            <tr>
+                <td>Standard</td>
+                <td>169,000.00 ريال</td>
+                <td>153,790.00 ريال</td>
+                <td>35,000.00 ريال</td>
+                <td>25,000.00 ريال</td>
+                <td>93,790.00 ريال</td>
+            </tr>
+            <tr>
+                <td>Economy</td>
+                <td>163,000.00 ريال</td>
+                <td>151,590.00 ريال</td>
+                <td>35,000.00 ريال</td>
+                <td>25,000.00 ريال</td>
+                <td>91,590.00 ريال</td>
+            </tr>
+        </tbody>
+    </table>
 
-      const claimPercentage = claimValue * percentage;
+    <!-- النص النهائي -->
+    <div class="content">
+        <p>
+            وبناءً على توصية رئيس الدائرة الأستاذ عبدالرحمن الزهراني، 
+            تم إعمال الخصم الممكن لجميع التقديرات وفقاً للمعايير المعتمدة من اللجنة.
+        </p>
+    </div>
 
-      // الإضافات حسب درجة التعقيد
-      let complexityFee;
-      if (complexity === "easy") complexityFee = 0;
-      else if (complexity === "medium") complexityFee = 0.05 * claimValue;
-      else if (complexity === "complex") complexityFee = 0.10 * claimValue;
-
-      // الجلسات الإضافية
-      const sessionFee = extraSessions > 0 ? extraSessions * 1000 : 0;
-
-      // الحساب النهائي
-      const totalFees = baseFee + claimPercentage + complexityFee + sessionFee;
-
-      // عرض النتيجة
-      document.getElementById("result").innerText = `إجمالي الأتعاب: ${totalFees.toFixed(2)} ريال`;
-    }
-  </script>
+    <!-- التوقيع -->
+    <footer>
+        <p style="font-weight: bold;">نأمل الاطلاع والاعتماد.</p>
+        <p style="font-weight: bold;">لجنة تقدير تكاليف أتعاب المحاماة</p>
+    </footer>
 </body>
 </html>
