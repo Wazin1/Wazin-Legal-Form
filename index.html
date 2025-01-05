@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تقرير تقدير أتعاب المحاماة</title>
+    <title>حاسبة أتعاب المحاماة</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
         body {
@@ -51,104 +51,111 @@
             line-height: 2;
         }
         footer {
-            text-align: left;
+            text-align: center;
             margin-top: 40px;
             font-size: 16px;
         }
-        .center-text {
-            text-align: center;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .decision {
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            padding: 15px;
+        button {
+            padding: 10px 20px;
             font-size: 16px;
-            background-color: #f9f9f9;
+            background-color: #3E4A61;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
             text-align: center;
         }
     </style>
 </head>
 <body>
     <!-- شعار وازن -->
-    <img src="https://l.top4top.io/p_3279xwwmt0.png" alt="شعار وازن">
-    <h1>تقرير لجنة تقدير تكاليف أتعاب المحاماة</h1>
+    <img src="https://i.postimg.cc/KcTJkvw2/IMG-4866.png" alt="شعار وازن">
+    <h1>حاسبة أتعاب المحاماة</h1>
 
     <!-- النص الرسمي -->
     <div class="content">
         <p>
-            بناءً على الصلاحيات المخولة للجنة تقدير تكاليف أتعاب المحاماة في شركة وازن للمحاماة والاستشارات القانونية، 
-            وانطلاقاً من حرص الشركة على تحقيق العدالة والشفافية، 
-            فقد اجتمعت اللجنة بتاريخ 23 ديسمبر 2024 عن بعد، 
-            وبعد الاطلاع على مستندات العميل المرفقة في النظام الداخلي، 
-            قررت اللجنة تقدير الأتعاب وفق الخيارات الثلاثة التالية:
+            توفر هذه الحاسبة تقديرًا أوليًا للأتعاب بناءً على قيمة المطالبة ونوع الدعوى.  
+            نأمل استخدام النموذج بدقة لضمان تقديرات عادلة ومتوافقة مع أنظمة شركة وازن.
         </p>
     </div>
 
-    <!-- جدول الأتعاب -->
-    <table>
+    <!-- الحاسبة -->
+    <div style="text-align: center;">
+        <label>قيمة المطالبة (ريال): </label>
+        <input type="number" id="claimValue" placeholder="أدخل المبلغ">
+        <label>نوع الدعوى:</label>
+        <select id="caseType">
+            <option value="commercial">تجارية</option>
+            <option value="criminal">جنائية</option>
+            <option value="civil">مدنية</option>
+            <option value="administrative">إدارية</option>
+            <option value="personal">أحوال شخصية</option>
+        </select>
+        <button onclick="calculateFees()">احسب</button>
+    </div>
+
+    <!-- النتائج -->
+    <table id="resultTable" style="display:none;">
         <thead>
             <tr>
                 <th>التقدير</th>
                 <th>قبل الخصم</th>
+                <th>الخصم</th>
                 <th>بعد الخصم</th>
-                <th>الدفعة الأولى</th>
-                <th>الاستحقاق</th>
-                <th>الدفعة الثانية</th>
-                <th>الاستحقاق</th>
-                <th>الدفعة الأخيرة</th>
-                <th>الاستحقاق</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>Premium</td>
-                <td>177,000.00 ريال</td>
-                <td>164,610.00 ريال</td>
-                <td>52,500.00 ريال</td>
-                <td>عند توقيع العقد</td>
-                <td>40,000.00 ريال</td>
-                <td>بعد مرور 60 يومًا</td>
-                <td>72,110.00 ريال</td>
-                <td>عند صدور حكم نهائي</td>
-            </tr>
-            <tr>
-                <td>Standard</td>
-                <td>169,000.00 ريال</td>
-                <td>162,240.00 ريال</td>
-                <td>52,500.00 ريال</td>
-                <td>عند توقيع العقد</td>
-                <td>35,000.00 ريال</td>
-                <td>بعد مرور 60 يومًا</td>
-                <td>74,740.00 ريال</td>
-                <td>عند صدور حكم نهائي</td>
-            </tr>
-            <tr>
-                <td>Economy</td>
-                <td>163,000.00 ريال</td>
-                <td>159,740.00 ريال</td>
-                <td>52,500.00 ريال</td>
-                <td>عند توقيع العقد</td>
-                <td>30,000.00 ريال</td>
-                <td>بعد مرور 60 يومًا</td>
-                <td>77,240.00 ريال</td>
-                <td>عند صدور حكم نهائي</td>
-            </tr>
-        </tbody>
+        <tbody id="resultBody"></tbody>
     </table>
 
-    <!-- قرار اللجنة -->
-    <div class="decision">
-        <p>قررت لجنة تقدير تكاليف أتعاب المحاماة اعتماد الخيار <strong>المتوسط (Standard)</strong> بالإجماع،</p>
-        <p>وذلك لكونه الأنسب لحجم القضية وطبيعة الجهد المتوقع بذله فيها، </p>
-        <p>مع الأخذ بعين الاعتبار الخصم الممنوح مسبقًا كجزء من التسهيلات المقدمة للعميل.</p>
-    </div>
-
-    <!-- النص النهائي -->
     <footer>
-        <p class="center-text">نأمل الاطلاع والاعتماد.</p>
-        <p style="text-align: left; font-weight: bold;">لجنة تقدير تكاليف أتعاب المحاماة</p>
+        <button onclick="window.location.href='index.html';">العودة للتقرير الرسمي</button>
     </footer>
+
+    <script>
+        function calculateFees() {
+            const claimValue = parseFloat(document.getElementById('claimValue').value);
+            const caseType = document.getElementById('caseType').value;
+
+            let baseFee = 0;
+
+            // تحديد الرسوم الأساسية بناءً على قيمة المطالبة
+            if (claimValue <= 50000) {
+                baseFee = 3000;
+            } else if (claimValue <= 100000) {
+                baseFee = 5000;
+            } else if (claimValue <= 500000) {
+                baseFee = 10000;
+            } else if (claimValue > 500000) {
+                baseFee = 20000 + Math.ceil((claimValue - 1000000) / 100000) * 7000;
+            }
+
+            // تحديد نسب الخصم
+            const discounts = { premium: 0.07, standard: 0.04, economy: 0.02 };
+            const resultBody = document.getElementById('resultBody');
+            resultBody.innerHTML = '';
+
+            // حساب النتائج لكل فئة
+            for (let type in discounts) {
+                const discount = baseFee * discounts[type];
+                const afterDiscount = baseFee - discount;
+
+                const row = `<tr>
+                                <td>${type === 'premium' ? 'عالي' : type === 'standard' ? 'متوسط' : 'منخفض'}</td>
+                                <td>${baseFee.toLocaleString()} ريال</td>
+                                <td>${(discount).toLocaleString()} ريال</td>
+                                <td>${afterDiscount.toLocaleString()} ريال</td>
+                            </tr>`;
+                resultBody.innerHTML += row;
+            }
+
+            document.getElementById('resultTable').style.display = 'table';
+        }
+    </script>
 </body>
 </html>
