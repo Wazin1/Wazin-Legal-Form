@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقرير تقدير أتعاب المحاماة</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+        body {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            margin: 40px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #3E4A61;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            font-size: 16px;
+        }
+        th {
+            background-color: #3E4A61;
+            color: white;
+        }
+        img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 200px;
+        }
+        footer {
+            text-align: left;
+            margin-top: 40px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3E4A61;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- الشعار -->
+    <img src="https://i.postimg.cc/KcTJkvw2/IMG-4866.png" alt="شعار وازن">
+    <h1>تقرير لجنة تقدير تكاليف أتعاب المحاماة</h1>
+
+    <!-- النص الرسمي -->
+    <p style="text-align: justify;">
+        بناءً على الصلاحيات المخولة للجنة تقدير تكاليف أتعاب المحاماة في شركة وازن للمحاماة والاستشارات القانونية،
+        وانطلاقاً من حرص الشركة على تحقيق العدالة والشفافية،
+        وبعد الاطلاع على مستندات العميل المرفقة في النظام الداخلي،
+        قررت اللجنة تقدير الأتعاب وفق الجدول التالي:
+    </p>
+
+    <!-- الجدول -->
+    <table id="resultTable">
+        <thead>
+            <tr>
+                <th>التقدير</th>
+                <th>قبل الخصم</th>
+                <th>بعد الخصم</th>
+                <th>الدفعة الأولى</th>
+                <th>الدفعة الثانية</th>
+                <th>الدفعة الأخيرة</th>
+            </tr>
+        </thead>
+        <tbody id="resultBody"></tbody>
+    </table>
+
+    <footer>
+        <p style="text-align: center; font-weight: bold;">نأمل الاطلاع والاعتماد.</p>
+    </footer>
+
+    <!-- سكريبت -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const claimValue = parseFloat(urlParams.get('claimValue'));
+
+        const discounts = { premium: 0.07, standard: 0.04, economy: 0.02 };
+        const resultBody = document.getElementById('resultBody');
+        const baseFee = claimValue > 50000 ? 10000 : 5000;
+
+        for (let type in discounts) {
+            const discount = baseFee * discounts[type];
+            const afterDiscount = baseFee - discount;
+            const row = `<tr>
+                            <td>${type === 'premium' ? 'عالي' : type === 'standard' ? 'متوسط' : 'منخفض'}</td>
+                            <td>${baseFee.toLocaleString()} ريال</td>
+                            <td>${afterDiscount.toLocaleString()} ريال</td>
+                            <td>52500 ريال</td>
+                            <td>35000 ريال</td>
+                            <td>الباقي</td>
+                        </tr>`;
+            resultBody.innerHTML += row;
+        }
+    </script>
+</body>
+</html>

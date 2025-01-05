@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة أتعاب المحاماة</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+        body {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            margin: 40px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #3E4A61;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3E4A61;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        input, select {
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- الشعار -->
+    <img src="https://i.postimg.cc/KcTJkvw2/IMG-4866.png" alt="شعار وازن" style="display: block; margin: 0 auto 20px; width: 200px;">
+    <h1>حاسبة أتعاب المحاماة</h1>
+
+    <!-- الحاسبة -->
+    <div style="text-align: center;">
+        <label>قيمة المطالبة (ريال): </label>
+        <input type="number" id="claimValue" placeholder="أدخل المبلغ">
+        <label>نوع الدعوى:</label>
+        <select id="caseType">
+            <option value="commercial">تجارية</option>
+            <option value="criminal">جنائية</option>
+            <option value="civil">مدنية</option>
+            <option value="administrative">إدارية</option>
+            <option value="personal">أحوال شخصية</option>
+        </select>
+        <button onclick="generateReport()">إصدار التقرير</button>
+    </div>
+
+    <script>
+        function generateReport() {
+            const claimValue = document.getElementById('claimValue').value;
+            const caseType = document.getElementById('caseType').value;
+            if (!claimValue || claimValue <= 0) {
+                alert('الرجاء إدخال قيمة مطالبة صحيحة!');
+                return;
+            }
+
+            // نقل البيانات إلى الصفحة الثانية
+            const url = `report.html?claimValue=${claimValue}&caseType=${caseType}`;
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>
