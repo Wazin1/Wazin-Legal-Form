@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حاسبة أتعاب المحاماة</title>
+    <title>تقرير تقدير أتعاب المحاماة</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
         body {
@@ -51,7 +51,7 @@
             line-height: 2;
         }
         footer {
-            text-align: center;
+            text-align: left;
             margin-top: 40px;
             font-size: 16px;
         }
@@ -75,13 +75,16 @@
 <body>
     <!-- شعار وازن -->
     <img src="https://i.postimg.cc/KcTJkvw2/IMG-4866.png" alt="شعار وازن">
-    <h1>حاسبة أتعاب المحاماة</h1>
+    <h1>تقرير لجنة تقدير تكاليف أتعاب المحاماة</h1>
 
     <!-- النص الرسمي -->
     <div class="content">
         <p>
-            توفر هذه الحاسبة تقديرًا أوليًا للأتعاب بناءً على قيمة المطالبة ونوع الدعوى.  
-            نأمل استخدام النموذج بدقة لضمان تقديرات عادلة ومتوافقة مع أنظمة شركة وازن.
+            بناءً على الصلاحيات المخولة للجنة تقدير تكاليف أتعاب المحاماة في شركة وازن للمحاماة والاستشارات القانونية، 
+            وانطلاقاً من حرص الشركة على تحقيق العدالة والشفافية، 
+            فقد اجتمعت اللجنة بتاريخ <strong>23 ديسمبر 2024</strong> عن بعد، 
+            وبعد الاطلاع على مستندات العميل المرفقة في النظام الداخلي، 
+            قررت اللجنة تقدير الأتعاب وفق الخيارات التالية:
         </p>
     </div>
 
@@ -108,23 +111,25 @@
                 <th>قبل الخصم</th>
                 <th>الخصم</th>
                 <th>بعد الخصم</th>
+                <th>الدفعة الأولى</th>
+                <th>الدفعة الثانية</th>
+                <th>الدفعة الأخيرة</th>
             </tr>
         </thead>
         <tbody id="resultBody"></tbody>
     </table>
 
     <footer>
-        <button onclick="window.location.href='index.html';">العودة للتقرير الرسمي</button>
+        <p class="center-text">نأمل الاطلاع والاعتماد.</p>
+        <p style="text-align: left; font-weight: bold;">لجنة تقدير تكاليف أتعاب المحاماة</p>
     </footer>
 
     <script>
         function calculateFees() {
             const claimValue = parseFloat(document.getElementById('claimValue').value);
-            const caseType = document.getElementById('caseType').value;
-
             let baseFee = 0;
 
-            // تحديد الرسوم الأساسية بناءً على قيمة المطالبة
+            // تحديد الرسوم الأساسية
             if (claimValue <= 50000) {
                 baseFee = 3000;
             } else if (claimValue <= 100000) {
@@ -135,21 +140,26 @@
                 baseFee = 20000 + Math.ceil((claimValue - 1000000) / 100000) * 7000;
             }
 
-            // تحديد نسب الخصم
             const discounts = { premium: 0.07, standard: 0.04, economy: 0.02 };
             const resultBody = document.getElementById('resultBody');
             resultBody.innerHTML = '';
 
-            // حساب النتائج لكل فئة
             for (let type in discounts) {
                 const discount = baseFee * discounts[type];
                 const afterDiscount = baseFee - discount;
+
+                const firstPayment = 52500;
+                const secondPayment = type === 'premium' ? 40000 : type === 'standard' ? 35000 : 30000;
+                const finalPayment = afterDiscount - firstPayment - secondPayment;
 
                 const row = `<tr>
                                 <td>${type === 'premium' ? 'عالي' : type === 'standard' ? 'متوسط' : 'منخفض'}</td>
                                 <td>${baseFee.toLocaleString()} ريال</td>
                                 <td>${(discount).toLocaleString()} ريال</td>
                                 <td>${afterDiscount.toLocaleString()} ريال</td>
+                                <td>${firstPayment.toLocaleString()} ريال</td>
+                                <td>${secondPayment.toLocaleString()} ريال</td>
+                                <td>${finalPayment.toLocaleString()} ريال</td>
                             </tr>`;
                 resultBody.innerHTML += row;
             }
